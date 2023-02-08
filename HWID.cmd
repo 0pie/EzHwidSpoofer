@@ -14,7 +14,7 @@ set "Website=^|________________________ HWID ________________________^|"
 reg add "HKCU\Software\Microsoft\InputMethod\Settings\CHS" /v "Default Mode" /t REG_DWORD /d 1 /f
 if /i %PROCESSOR_ARCHITECTURE% equ AMD64 ( set "Bit=64" ) else ( set "Bit=86" )
 for /f "tokens=4 delims= " %%i in ('reg query "HKLM\Software\Microsoft\Windows NT\CurrentVersion" /v "ProductName"') do (set "Version=%%i")
-ver|findstr "°æ±¾" >nul&&set "HostLanguage=zh-CN"||set "HostLanguage=en-US"
+ver|findstr "Â°Ã¦Â±Â¾" >nul&&set "HostLanguage=zh-CN"||set "HostLanguage=en-US"
 :Begin
 title HWID
 mode con COLS=104 LINES=55
@@ -57,7 +57,7 @@ for /f "skip=1 tokens=*" %%a in ('wmic os get TotalVisibleMemorySize')  do (
 echo.            MemorySize:%res%G
 echo. 
 echo       Boot:
-bcdedit|findstr /i "winload.efi">nul 2>nul && set "BootType=UEFI" || set "BootType=´«Í³"
+bcdedit|findstr /i "winload.efi">nul 2>nul && set "BootType=UEFI" || set "BootType=Â´Â«ÃÂ³"
 echo. 
 echo.            BootType:%BootType%
 echo. 
@@ -84,9 +84,8 @@ wmic path Win32_ComputerSystemProduct get UUID
 
 echo. Adapter
 @echo off&color 0A&&setlocal EnableDelayedExpansion
-for /f "tokens=*" %%i in ('ipconfig /all^|findstr /i "ÃèÊö ÎïÀíµØÖ·"') do set "qq=%%i"&&set "qq=!qq:. =!"&&echo.!qq!
+for /f "tokens=*" %%i in ('ipconfig /all^|findstr /i "ÃƒÃ¨ÃŠÃ¶ ÃŽÃ¯Ã€Ã­ÂµÃ˜Ã–Â·"') do set "qq=%%i"&&set "qq=!qq:. =!"&&echo.!qq!
 for /f "tokens=*" %%i in ('ipconfig /all^|findstr /ic:"Description" /ic:"Physical Address"') do set "qq=%%i"&&set "qq=!qq:. =!"&&echo.!qq!
-echo.
 echo.
 echo._________________________________HWID_________________________________  
 pause>nul
